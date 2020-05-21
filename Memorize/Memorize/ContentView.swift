@@ -15,7 +15,6 @@ struct ContentView: View {
         HStack {
             ForEach(viewModel.cards) { card in
                 CardView(card: card)
-                    .frame(width: 30, height: 45)
                     .onTapGesture {
                         self.viewModel.choose(card: card)
                     }
@@ -39,7 +38,7 @@ struct CardView: View {
             } else {
                 RoundedRectangle(cornerRadius: 10.0).fill()
             }
-        }
+        }.aspectRatio(2/3, contentMode: .fit)
     }
 }
 
