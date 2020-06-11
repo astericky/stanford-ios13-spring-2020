@@ -28,9 +28,16 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                     score = score + 2
-                } else if cards[chosenIndex].isPreviouslySeen {
-                    score = score - 1
+                } else {
+                    if cards[chosenIndex].isPreviouslySeen {
+                        score = score - 1
+                    }
+                    
+                    if cards[potentialMatchIndex].isPreviouslySeen {
+                        score = score - 1
+                    }
                 }
+                
                 self.cards[chosenIndex].isFaceUp = true
             } else {
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
