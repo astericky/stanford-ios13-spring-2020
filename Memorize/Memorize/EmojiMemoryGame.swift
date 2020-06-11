@@ -8,36 +8,57 @@
 
 import SwiftUI
 
-class EmojiMemoryGame {
-    private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+class EmojiMemoryGame: ObservableObject {
+    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    static var theme: Theme?
+
+    static var themes = [
+        Theme(name: "Halloween", emojis: ["🕷", "👻", "🦇", "🎃", "🧹", "🧛🏾‍♂️"], numberOfPairsOfCards: nil, color: Color.orange),
+        Theme(name: "Government", emojis: ["👮🏾‍♀️", "🗽", "⛪️", "🚓", "🚨", "🛑"], numberOfPairsOfCards: 4, color: Color.blue),
+        Theme(name: "Nature", emojis: ["🌲", "🐇", "🐓", "☘️", "🍄", "🌾"], numberOfPairsOfCards: 5, color: Color.green),
+        Theme(name: "Heart", emojis: ["👨‍❤️‍💋‍👨", "💝", "❤️", "💗", "🏩", "💌"], numberOfPairsOfCards: nil, color: Color.red),
+        Theme(name: "Smiley", emojis: ["😁", "😌", "😎", "🤩", "🥳", "😂"], numberOfPairsOfCards: 3, color: Color.yellow),
+        Theme(name: "Dancing", emojis: ["💃🏾", "🕺🏾", "🩰", "👯‍♂️", "👨🏾‍🎤", "🎶"], numberOfPairsOfCards: nil, color: Color.purple),
+    ]
     
     static func createMemoryGame() -> MemoryGame<String> {
-        var emojis = ["👻", "🎃", "🕷", "🦇", "🧹", "🤵🏾", "🤬", "🐘", "⛺️", "🤢", "👍🏾", "🧞‍♀️", "👨🏾‍💻", "😻", "🤗"]
+        theme = EmojiMemoryGame.themes[Int.random(in: 0..<EmojiMemoryGame.themes.count)]
+        var emojis = theme!.emojis
         emojis = emojis.shuffled()
-        emojis = Array(emojis.prefix(5))
-        let randomNumber = Int.random(in: 2...5)
-        return MemoryGame<String>(numberOfPairsOfCards: randomNumber) { pairIndex in
+        return MemoryGame<String>(numberOfPairsOfCards: theme!.numberOfPairsOfCardsToShow) { pairIndex in
             return emojis[pairIndex]
             
         }
     }
+    
+    func createNewMemoryGame() {
+        model = EmojiMemoryGame.createMemoryGame()
+    }
         
     
     // MARK: - Access to the Model
+    var score: Int {
+        model.score
+    }
     
     var cards: Array<MemoryGame<String>.Card> {
         model.cards
     }
+    
 
     // MARK: - Intent(s)
     
     func choose(card: MemoryGame<String>.Card) {
         model.choose(card: card)
     }
-}
-
-struct EmojiMemoryGame_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    
+    struct Theme {
+        var name: String
+        var emojis: Array<String>
+        var numberOfPairsOfCards: Int?
+        var numberOfPairsOfCardsToShow: Int {
+            numberOfPairsOfCards ?? Int.random(in: 2..<emojis.count)
+        }
+        var color: Color
     }
 }
