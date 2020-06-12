@@ -68,15 +68,15 @@
 		2AAA07752475E58500D255C0 /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				2AAA077A2475E58500D255C0 /* EmojiGameView.swift */,
+				2A7921542476049700307617 /* EmojiMemoryGame.swift */,
+				2A7921522476028300307617 /* MemoryGame.swift */,
+				2A04FFC5247F23C300700D45 /* Grid.swift */,
+				2A04FFC7247F7CB900700D45 /* GridLayout.swift */,
+				2A04FFC924806A7200700D45 /* Array+Identifiable.swift */,
+				2A47B9ED248756C400BBB5F5 /* Array+Only.swift */,
 				2AAA07762475E58500D255C0 /* AppDelegate.swift */,
 				2AAA07782475E58500D255C0 /* SceneDelegate.swift */,
-				2AAA077A2475E58500D255C0 /* EmojiGameView.swift */,
-				2A04FFC5247F23C300700D45 /* Grid.swift */,
-				2A04FFC924806A7200700D45 /* Array+Identifiable.swift */,
-				2A04FFC7247F7CB900700D45 /* GridLayout.swift */,
-				2A7921522476028300307617 /* MemoryGame.swift */,
-				2A47B9ED248756C400BBB5F5 /* Array+Only.swift */,
-				2A7921542476049700307617 /* EmojiMemoryGame.swift */,
 				2AAA077C2475E58600D255C0 /* Assets.xcassets */,
 				2AAA07812475E58600D255C0 /* LaunchScreen.storyboard */,
 				2AAA07842475E58600D255C0 /* Info.plist */,

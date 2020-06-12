@@ -21,7 +21,7 @@ class EmojiMemoryGame: ObservableObject {
         Theme(name: "Dancing", emojis: ["💃🏾", "🕺🏾", "🩰", "👯‍♂️", "👨🏾‍🎤", "🎶"], numberOfPairsOfCards: nil, color: Color.purple),
     ]
     
-    static func createMemoryGame() -> MemoryGame<String> {
+    private static func createMemoryGame() -> MemoryGame<String> {
         theme = EmojiMemoryGame.themes[Int.random(in: 0..<EmojiMemoryGame.themes.count)]
         var emojis = theme!.emojis
         emojis = emojis.shuffled()
