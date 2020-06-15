@@ -27,12 +27,7 @@ class EmojiMemoryGame: ObservableObject {
         emojis = emojis.shuffled()
         return MemoryGame<String>(numberOfPairsOfCards: theme!.numberOfPairsOfCardsToShow) { pairIndex in
             return emojis[pairIndex]
-            
         }
-    }
-    
-    func createNewMemoryGame() {
-        model = EmojiMemoryGame.createMemoryGame()
     }
         
     
@@ -50,6 +45,10 @@ class EmojiMemoryGame: ObservableObject {
     
     func choose(card: MemoryGame<String>.Card) {
         model.choose(card: card)
+    }
+    
+    func resetGame() {
+        model = EmojiMemoryGame.createMemoryGame()
     }
     
     struct Theme {
