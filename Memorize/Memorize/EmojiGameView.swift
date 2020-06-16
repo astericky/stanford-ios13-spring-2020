@@ -53,7 +53,7 @@ struct HeaderView: View {
 }
 
 struct FooterView: View {
-    var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
         HStack {
